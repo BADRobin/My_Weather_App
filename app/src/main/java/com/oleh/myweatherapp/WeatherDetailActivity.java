@@ -50,19 +50,19 @@ public class WeatherDetailActivity extends AppCompatActivity {
                 weatherIcon.setAnimation(R.raw.clear);
                 break;
             case CLEAR_NIGHT:
-                weatherIcon.setAnimation(R.raw.clear);
+                weatherIcon.setAnimation(R.raw.moon);
                 break;
             case FEW_CLOUDS:
                 weatherIcon.setAnimation(R.raw.few_clouds);
                 break;
             case FEW_CLOUDS_NIGHT:
-                weatherIcon.setAnimation(R.raw.few_clouds);
+                weatherIcon.setAnimation(R.raw.few_clouds_night);
                 break;
             case SCATTERED_CLOUDS:
                 weatherIcon.setAnimation(R.raw.scattered_clouds);
                 break;
             case SCATTERED_CLOUDS_NIGHT:
-                weatherIcon.setAnimation(R.raw.scattered_clouds);
+                weatherIcon.setAnimation(R.raw.scattered_clouds_night);
                 break;
 
             case OVERCAST_CLOUDS:

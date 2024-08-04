@@ -72,26 +72,26 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                         holder.getWeatherIcon().setAnimation(R.raw.clear);
                         break;
                     case CLEAR_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.clear);
+                        holder.getWeatherIcon().setAnimation(R.raw.moon);
                         break;
                     case FEW_CLOUDS:
                         holder.getWeatherIcon().setAnimation(R.raw.few_clouds);
                         break;
                     case FEW_CLOUDS_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.few_clouds);
+                        holder.getWeatherIcon().setAnimation(R.raw.few_clouds_night);
                         break;
                     case SCATTERED_CLOUDS:
                         holder.getWeatherIcon().setAnimation(R.raw.scattered_clouds);
                         break;
                     case SCATTERED_CLOUDS_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.scattered_clouds);
+                        holder.getWeatherIcon().setAnimation(R.raw.scattered_clouds_night);
                         break;
 
                     case OVERCAST_CLOUDS:
                         holder.getWeatherIcon().setAnimation(R.raw.overcast_clouds);
                         break;
                     case OVERCAST_CLOUDS_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.overcast_clouds);
+                        holder.getWeatherIcon().setAnimation(R.raw.overcast_clouds_night);
                         break;
 
                     case DRIZZLE:
