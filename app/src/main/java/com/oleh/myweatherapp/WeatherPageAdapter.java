@@ -66,7 +66,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                         holder.getWeatherIcon().setAnimation(R.raw.rain);
                         break;
                     case RAIN_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.rain);
+                        holder.getWeatherIcon().setAnimation(R.raw.rain_night);
                         break;
                     case CLEAR:
                         holder.getWeatherIcon().setAnimation(R.raw.clear);
@@ -98,21 +98,27 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                         holder.getWeatherIcon().setAnimation(R.raw.drizzle);
                         break;
                     case DRIZZLE_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.drizzle);
+                        holder.getWeatherIcon().setAnimation(R.raw.drizzle_night);
+                        break;
+                    case THUNDERSTORM:
+                        holder.getWeatherIcon().setAnimation(R.raw.thunderstorm);
+                        break;
+                    case THUNDERSTORM_NIGHT:
+                        holder.getWeatherIcon().setAnimation(R.raw.thunderstorm_night);
                         break;
 
                     case SNOW:
                         holder.getWeatherIcon().setAnimation(R.raw.snow);
                         break;
                     case SNOW_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.snow);
+                        holder.getWeatherIcon().setAnimation(R.raw.snow_night);
                         break;
 
                     case SMOKE:
-                        holder.getWeatherIcon().setAnimation(R.raw.snow);
+                        holder.getWeatherIcon().setAnimation(R.raw.smoke);
                         break;
                     case SMOKE_NIGHT:
-                        holder.getWeatherIcon().setAnimation(R.raw.snow);
+                        holder.getWeatherIcon().setAnimation(R.raw.smoke_night);
                         break;
 
                     default:

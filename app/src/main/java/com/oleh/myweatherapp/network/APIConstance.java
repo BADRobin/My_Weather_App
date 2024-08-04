@@ -19,6 +19,9 @@ public final class APIConstance {
     public static final String RainCode = "10d";
     public static final String RainNightCode = "10n";
 
+    public static final String ThunderstormCode = "11d";
+    public static final String ThunderstormNightCode = "11n";
+
     public static final String SnowCode = "13d";
     public static final String SnowNightCode = "13n";
 

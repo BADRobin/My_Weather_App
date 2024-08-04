@@ -24,6 +24,9 @@ public enum WeatherIconCode {
     RAIN(RainCode),
     RAIN_NIGHT(RainNightCode),
 
+    THUNDERSTORM(ThunderstormCode),
+    THUNDERSTORM_NIGHT(ThunderstormNightCode),
+
     SNOW(SnowCode),
     SNOW_NIGHT(SnowNightCode),
 
@@ -58,6 +61,9 @@ public enum WeatherIconCode {
 
             case RainCode : return RAIN;
             case RainNightCode: return RAIN_NIGHT;
+
+            case ThunderstormCode: return THUNDERSTORM;
+            case ThunderstormNightCode: return THUNDERSTORM_NIGHT;
 
             case SnowCode : return SNOW;
             case SnowNightCode: return SNOW_NIGHT;
