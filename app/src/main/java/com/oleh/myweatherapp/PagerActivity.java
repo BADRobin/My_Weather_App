@@ -37,5 +37,6 @@ public class PagerActivity extends AppCompatActivity {
 
 
         weatherPager.setAdapter(adapter);
+
     }
 }

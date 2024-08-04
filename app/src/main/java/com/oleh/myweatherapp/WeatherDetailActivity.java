@@ -1,6 +1,8 @@
 package com.oleh.myweatherapp;
 
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +17,7 @@ import com.oleh.myweatherapp.weather.Weather;
 import com.squareup.picasso.Picasso;
 
 public class WeatherDetailActivity extends AppCompatActivity {
-
+Animation move_weather_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,9 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
 
         textView.setText("Temperature: " + weather.getTemp() + " °C");
+//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.move_weather_icon);
+
+
 
 //        String iconURL = "https://openweathermap.org/img/wn/" + weather.getIconCode()  + "@2x.png";
 //        Picasso.get().load(iconURL).into(weatherIcon);
@@ -44,7 +49,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
                 weatherIcon.setAnimation(R.raw.rain);
                 break;
             case RAIN_NIGHT:
-                weatherIcon.setAnimation(R.raw.rain);
+                weatherIcon.setAnimation(R.raw.rain_night);
                 break;
             case CLEAR:
                 weatherIcon.setAnimation(R.raw.clear);
@@ -69,32 +74,39 @@ public class WeatherDetailActivity extends AppCompatActivity {
                 weatherIcon.setAnimation(R.raw.overcast_clouds);
                 break;
             case OVERCAST_CLOUDS_NIGHT:
-                weatherIcon.setAnimation(R.raw.overcast_clouds);
+                weatherIcon.setAnimation(R.raw.overcast_clouds_night);
                 break;
 
             case DRIZZLE:
                 weatherIcon.setAnimation(R.raw.drizzle);
                 break;
             case DRIZZLE_NIGHT:
-                weatherIcon.setAnimation(R.raw.drizzle);
+                weatherIcon.setAnimation(R.raw.drizzle_night);
+                break;
+            case THUNDERSTORM:
+                weatherIcon.setAnimation(R.raw.thunderstorm);
+                break;
+            case THUNDERSTORM_NIGHT:
+                weatherIcon.setAnimation(R.raw.thunderstorm_night);
                 break;
 
             case SNOW:
                 weatherIcon.setAnimation(R.raw.snow);
                 break;
             case SNOW_NIGHT:
-                weatherIcon.setAnimation(R.raw.snow);
+                weatherIcon.setAnimation(R.raw.snow_night);
                 break;
 
             case SMOKE:
-                weatherIcon.setAnimation(R.raw.snow);
+                weatherIcon.setAnimation(R.raw.smoke);
                 break;
             case SMOKE_NIGHT:
-                weatherIcon.setAnimation(R.raw.snow);
+                weatherIcon.setAnimation(R.raw.smoke_night);
                 break;
 
             default:
                 weatherIcon.setAnimation(R.raw.error);
         }
+//        weatherIcon.startAnimation(animation);
     }
 }

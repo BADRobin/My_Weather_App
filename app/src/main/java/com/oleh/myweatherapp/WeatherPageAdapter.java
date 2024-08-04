@@ -5,6 +5,8 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +39,9 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.page_weather, parent, false);
         WeatherPagerViewHolder holder = new WeatherPagerViewHolder(itemView);
-
+//        Animation animation = AnimationUtils.loadAnimation(parent.getContext(), R.anim.move_weather_icon);
+//
+//                holder.getWeatherIcon().startAnimation(animation);
         return holder;
     }
 
@@ -50,14 +54,16 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
 
         NetworkService networkService = new OkHttpService();
         WeatherService weatherService = new WeatherServiceImpl(networkService);
-        PexelImageService pexelImageService  = new PexelImageImpl(networkService);
-
+        PexelImageService pexelImageService = new PexelImageImpl(networkService);
+        
         new Thread(() -> {
             Weather weather = weatherService.getWeatherByLocation(locationText);
             String iconURL = "https://openweathermap.org/img/wn/" + weather.getIconCode() + "@2x.png";
 
-            new Handler(Looper.getMainLooper()).post(()-> {
-               holder.getTempTextView().setText(weather.getTemp() + " ");
+            new Handler(Looper.getMainLooper()).post(() -> {
+                holder.getTempTextView().setText(weather.getTemp() + " ");
+                Animation animation = AnimationUtils.loadAnimation(holder.getWeatherIcon().getContext(), R.anim.move_weather_icon);
+
 
 //               Picasso.get().load(iconURL).into(holder.getWeatherIcon());
 
@@ -124,7 +130,8 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                     default:
                         holder.getWeatherIcon().setAnimation(R.raw.error);
                 }
-           } );
+                holder.getWeatherIcon().startAnimation(animation);
+            });
         }).start();
 
         new Thread(() -> {
