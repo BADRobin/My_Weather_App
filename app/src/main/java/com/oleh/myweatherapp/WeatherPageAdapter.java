@@ -1,5 +1,7 @@
 package com.oleh.myweatherapp;
 
+import android.animation.AnimatorInflater;
+import android.animation.ObjectAnimator;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -7,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+//import android.view.animation.Animation;
+//import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,7 +67,10 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
             new Handler(Looper.getMainLooper()).post(() -> {
                 holder.getTempTextView().setText(weather.getTemp() + " ");
                 Animation animation = AnimationUtils.loadAnimation(holder.getWeatherIcon().getContext(), R.anim.move_weather_icon);
-
+//                Animation animation2 = AnimationUtils.loadAnimation(holder.getWeatherIcon().getContext(), R.anim.zoom_out);
+//                ObjectAnimator animator = (ObjectAnimator) AnimatorInflater.loadAnimator(holder.getWeatherIcon().getContext(), R.anim.zoom_out);
+//                animator.setTarget(holder.getWeatherIcon());
+//                animator.start();
 
 //               Picasso.get().load(iconURL).into(holder.getWeatherIcon());
 
@@ -131,6 +138,9 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                         holder.getWeatherIcon().setAnimation(R.raw.error);
                 }
                 holder.getWeatherIcon().startAnimation(animation);
+//                holder.getWeatherIcon().cancelAnimation();
+//                holder.getWeatherIcon().startAnimation(animation2);
+
             });
         }).start();
 
