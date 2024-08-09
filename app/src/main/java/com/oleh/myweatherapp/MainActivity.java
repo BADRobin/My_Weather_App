@@ -1,86 +1,64 @@
 package com.oleh.myweatherapp;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-
-import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.oleh.myweatherapp.network.NetworkService;
-import com.oleh.myweatherapp.network.OkHttpService;
-import com.oleh.myweatherapp.pexelImage.PexelImage;
-import com.oleh.myweatherapp.pexelImage.PexelImageImpl;
-import com.oleh.myweatherapp.pexelImage.PexelImageService;
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.oleh.myweatherapp.weather.Weather;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-
     private Weather weather;
+    FloatingActionButton fab;
+    DrawerLayout drawerLayout;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
 
-        Button button1 = findViewById(R.id.button1);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
 
-        button1.setOnClickListener(view -> {
-            Intent intent = new Intent(this, PagerActivity.class);
+        if (savedInstanceState == null) {
 
-            startActivity(intent);
-        });
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
 
-
-//        NetworkService networkService = new OkHttpService();
-//        WeatherService weatherService = new WeatherServiceImpl(networkService);
-//
-//        LocationDAO locationDao = new LocationStorage(this);
-//        locationDao.deleteAll();
-//
-//        new Thread(() -> {
-//            Weather weather = weatherService.getWeatherByLocation("Berlin, DE");
-//            Location location = new Location(
-//                    "Berlin",
-//                    "DE",
-//                    weather.getLat(),
-//                    weather.getLon()
-//            );
-//            locationDao.addLocation(location);
-//
-//            Log.d("YOYO", locationDao.getAllLocations().toString());
-//        }).start();
-
-
-//        Map<String, String> params = new HashMap<>();
-//        params.put("query", "Mykolaiv, UA");
-//
-//
-//        Map <String, String> headers = new HashMap<>();
-//        headers.put("Authorization", "VcVEvxy7V62yi9PAr8Xw9MbN133BcFXQ7YBEHfe2cAB3HJVA5xv7rHjx");
-
-//        NetworkService networkService = new OkHttpService();
-//        PexelImageService pexelImageService = new PexelImageImpl(networkService);
-//        new Thread(() -> {
-//            List<PexelImage> images = pexelImageService.getImagesForQuery("Mykolaiv, UA");
-//            NetworkResponse response = networkService.getResponse("https://api.pexels.com/v1/search", params, headers);
-//            Log.d("Yo" )
-
-//        }).start();
+        }
 
 
     }
+
+
 }

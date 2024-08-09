@@ -25,11 +25,13 @@
 
 
     <TextView
+        android:paddingLeft="20dp"
         android:id="@+id/tempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="100"
-        android:textSize="50dp"
+
+        style="@style/shadoweffect"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="30dp" />
@@ -43,6 +45,8 @@
         android:textSize="40dp"
         tools:ignore="MissingConstraints"
         android:paddingTop="60dp"
+        android:paddingLeft="10dp"
+        style="@style/shadoweffect"
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="313dp" />
 

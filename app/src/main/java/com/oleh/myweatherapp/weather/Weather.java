@@ -11,13 +11,13 @@ public class Weather implements Serializable {
     private final double lon;
     private final String weatherDescription;
     private final WeatherIconCode iconCode;
-    private final double temp;
+    private final int temp;
     private final double tempFeelsLike;
     private final double minTemp;
     private final double maxTemp;
     private final String locationName;
 
-    public Weather(double lat, double lon, String weatherDescription, String iconCode, double temp, double tempFeelsLike, double minTemp, double maxTemp, String locationName) {
+    public Weather(double lat, double lon, String weatherDescription, String iconCode, int temp, double tempFeelsLike, double minTemp, double maxTemp, String locationName) {
         this.lat = lat;
         this.lon = lon;
         this.weatherDescription = weatherDescription;
@@ -45,7 +45,7 @@ public class Weather implements Serializable {
         return iconCode;
     }
 
-    public double getTemp() {
+    public int getTemp() {
         return temp;
     }
 

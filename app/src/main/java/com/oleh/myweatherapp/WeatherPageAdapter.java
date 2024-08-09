@@ -61,18 +61,17 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         PexelImageService pexelImageService = new PexelImageImpl(networkService);
         
         new Thread(() -> {
+            Animation fadeInCityName = AnimationUtils.loadAnimation(holder.getCityTextView().getContext(), R.anim.fade_in);
+            holder.getCityTextView().startAnimation(fadeInCityName);
             Weather weather = weatherService.getWeatherByLocation(locationText);
-            String iconURL = "https://openweathermap.org/img/wn/" + weather.getIconCode() + "@2x.png";
 
             new Handler(Looper.getMainLooper()).post(() -> {
-                holder.getTempTextView().setText(weather.getTemp() + " ");
-                Animation animation = AnimationUtils.loadAnimation(holder.getWeatherIcon().getContext(), R.anim.move_weather_icon);
-//                Animation animation2 = AnimationUtils.loadAnimation(holder.getWeatherIcon().getContext(), R.anim.zoom_out);
-//                ObjectAnimator animator = (ObjectAnimator) AnimatorInflater.loadAnimator(holder.getWeatherIcon().getContext(), R.anim.zoom_out);
-//                animator.setTarget(holder.getWeatherIcon());
-//                animator.start();
 
-//               Picasso.get().load(iconURL).into(holder.getWeatherIcon());
+                Animation animation = AnimationUtils.loadAnimation(holder.getWeatherIcon().getContext(), R.anim.move_weather_icon);
+                Animation fadeIn = AnimationUtils.loadAnimation(holder.getTempTextView().getContext(), R.anim.fade_in);
+
+                holder.getTempTextView().startAnimation(fadeIn);
+                holder.getTempTextView().setText(weather.getTemp() + " \u2103");
 
                 switch (weather.getIconCode()) {
                     case RAIN:
@@ -138,8 +137,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                         holder.getWeatherIcon().setAnimation(R.raw.error);
                 }
                 holder.getWeatherIcon().startAnimation(animation);
-//                holder.getWeatherIcon().cancelAnimation();
-//                holder.getWeatherIcon().startAnimation(animation2);
+
 
             });
         }).start();
