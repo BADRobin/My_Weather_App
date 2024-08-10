@@ -12,7 +12,7 @@ import com.airbnb.lottie.LottieAnimationView;
 public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
 
     private final ImageView backgroundImageView;
-    //    private final ImageView weatherIcon;
+
     private final LottieAnimationView weatherIcon;
 
     private final TextView cityTextView;
@@ -21,7 +21,7 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
     public WeatherPagerViewHolder(@NonNull View itemView) {
         super(itemView);
         backgroundImageView = itemView.findViewById(R.id.backgroundImageView);
-//        weatherIcon = itemView.findViewById(R.id.weatherIcon);
+
         weatherIcon = itemView.findViewById(R.id.weatherIcon);
 
         cityTextView = itemView.findViewById(R.id.cityTextView);
@@ -33,9 +33,7 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
         return backgroundImageView;
     }
 
-    //    public ImageView getWeatherIcon() {
-//        return weatherIcon;
-//    }
+
     public LottieAnimationView getWeatherIcon() {
         return weatherIcon;
     }

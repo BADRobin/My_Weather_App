@@ -1,10 +1,12 @@
 package com.oleh.myweatherapp;
 
+
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
+
+
+
 import android.widget.TextView;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +15,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
+
 import com.oleh.myweatherapp.weather.Weather;
-import com.squareup.picasso.Picasso;
+
 
 public class WeatherDetailActivity extends AppCompatActivity {
-Animation move_weather_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +28,20 @@ Animation move_weather_icon;
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+
+
             return insets;
         });
 
         Weather weather = (Weather) getIntent().getSerializableExtra("weather");
-//        ImageView weatherIcon = findViewById(R.id.weatherIcon);
+
         LottieAnimationView weatherIcon = findViewById(R.id.weatherIcon);
 
         TextView textView = findViewById(R.id.textView);
 
 
         textView.setText("Temperature: " + weather.getTemp() + " °C");
-//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.move_weather_icon);
 
-
-
-//        String iconURL = "https://openweathermap.org/img/wn/" + weather.getIconCode()  + "@2x.png";
-//        Picasso.get().load(iconURL).into(weatherIcon);
 
         switch (weather.getIconCode()) {
             case RAIN:
@@ -107,6 +106,11 @@ Animation move_weather_icon;
             default:
                 weatherIcon.setAnimation(R.raw.error);
         }
-//        weatherIcon.startAnimation(animation);
+
+
+
     }
+
+
 }
+

@@ -1,4 +1,6 @@
-package com.oleh.myweatherapp;
+package com.oleh.myweatherapp;//        Animation animation = AnimationUtils.loadAnimation(parent.getContext(), R.anim.move_weather_icon);
+//
+//                holder.getWeatherIcon().startAnimation(animation);
 
 import android.os.Bundle;
 

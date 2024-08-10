@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
+//            navigationView.setCheckedItem(R.id.nav_home);
 
         }
 

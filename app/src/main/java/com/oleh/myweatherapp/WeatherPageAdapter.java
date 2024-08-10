@@ -2,19 +2,28 @@ package com.oleh.myweatherapp;
 
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 //import android.view.animation.Animation;
 //import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.oleh.myweatherapp.network.NetworkService;
 import com.oleh.myweatherapp.network.OkHttpService;
 import com.oleh.myweatherapp.pexelImage.PexelImage;
@@ -31,7 +40,7 @@ import java.util.List;
 public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHolder> {
 
     private final List<Location> locations;
-
+    FloatingActionButton fab;
 
     public WeatherPageAdapter(List<Location> locations) {
         this.locations = locations;
@@ -43,9 +52,8 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.page_weather, parent, false);
         WeatherPagerViewHolder holder = new WeatherPagerViewHolder(itemView);
-//        Animation animation = AnimationUtils.loadAnimation(parent.getContext(), R.anim.move_weather_icon);
-//
-//                holder.getWeatherIcon().startAnimation(animation);
+        fab = itemView.findViewById(R.id.fab);
+
         return holder;
     }
 
@@ -59,13 +67,14 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         NetworkService networkService = new OkHttpService();
         WeatherService weatherService = new WeatherServiceImpl(networkService);
         PexelImageService pexelImageService = new PexelImageImpl(networkService);
-        
+
         new Thread(() -> {
             Animation fadeInCityName = AnimationUtils.loadAnimation(holder.getCityTextView().getContext(), R.anim.fade_in);
             holder.getCityTextView().startAnimation(fadeInCityName);
             Weather weather = weatherService.getWeatherByLocation(locationText);
 
             new Handler(Looper.getMainLooper()).post(() -> {
+
 
                 Animation animation = AnimationUtils.loadAnimation(holder.getWeatherIcon().getContext(), R.anim.move_weather_icon);
                 Animation fadeIn = AnimationUtils.loadAnimation(holder.getTempTextView().getContext(), R.anim.fade_in);
@@ -140,10 +149,11 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
 
 
             });
+            fab.setOnClickListener(view -> showBottomDialog());
         }).start();
 
         new Thread(() -> {
-//            List<PexelImage> images = pexelImageService.getImagesByQuery("Mykolaiv, UA");
+
 
             PexelImage image = pexelImageService.getRandomImagesForQuery(locationText);
 
@@ -151,6 +161,20 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                 Picasso.get().load(image.getPortraitURL()).into(holder.getBackgroundImageView());
             });
         }).start();
+    }
+
+    private void showBottomDialog() {
+
+        final Dialog dialog = new Dialog(fab.getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottomsheetlayout);
+
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
     @Override
