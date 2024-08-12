@@ -7,7 +7,7 @@ import com.oleh.myweatherapp.network.NetworkResponse;
 import com.oleh.myweatherapp.network.NetworkService;
 
 import java.util.HashMap;
-import java.util.Locale;
+
 import java.util.Map;
 
 public class WeatherServiceImpl implements WeatherService {

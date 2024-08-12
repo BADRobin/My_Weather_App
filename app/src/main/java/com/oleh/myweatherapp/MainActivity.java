@@ -18,9 +18,9 @@ import com.oleh.myweatherapp.weather.Weather;
 
 public class MainActivity extends AppCompatActivity {
     private Weather weather;
-    FloatingActionButton fab;
+
     DrawerLayout drawerLayout;
-    BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
-//            navigationView.setCheckedItem(R.id.nav_home);
+
 
         }
 

@@ -32,7 +32,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             fab = findViewById(R.id.fab);
-//            fab.setOnClickListener(view -> showBottomDialog());
+
             return insets;
         });
 
@@ -115,20 +115,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
     }
 
-//    private void showBottomDialog() {
-//        final Dialog dialog = new Dialog(fab.getContext());
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.bottomsheetlayout);
-//
-//
-//        dialog.show();
-//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-//        dialog.getWindow().setGravity(Gravity.BOTTOM);
-//
-//
-//    }
+
 
 
 }

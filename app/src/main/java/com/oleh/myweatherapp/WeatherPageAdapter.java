@@ -1,3 +1,4 @@
+
 package com.oleh.myweatherapp;
 
 import android.app.Dialog;
@@ -5,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -36,8 +38,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
 
     private final List<Location> locations;
     FloatingActionButton fab;
-    private final static int HEADER_VIEW = 0;
-    private final static int CONTENT_VIEW = 1;
+
 
     public WeatherPageAdapter(List<Location> locations) {
         this.locations = locations;
@@ -86,10 +87,9 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                 holder.getTempTextView().startAnimation(fadeIn);
                 holder.getTempTextView().setText(weather.getTemp() + " \u2103");
 
-                holder.getTempFeelsLikeTextView().setText(weather.getTempFeelsLike() + " ");
-                holder.getMaxTempTextView().setText(weather.getMaxTemp() + " ");
-                holder.getMinTempTextView().setText(weather.getMinTemp() + " ");
-                holder.getWeatherDescriptionTextView().setText(weather.getWeatherDescription());
+                Log.d("helder", weather.toString());
+
+
                 switch (weather.getIconCode()) {
                     case RAIN:
                         holder.getWeatherIcon().setAnimation(R.raw.rain);
@@ -157,38 +157,12 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
 
 
             });
-            fab.setOnClickListener(view -> showBottomDialog());
+            fab.setOnClickListener(view -> showBottomDialog(weather));
 
-          new  WeatherPageAdapterFragment(locations);
+
 
         }).start();
-//        if (holder == null) {
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new WeatherPageAdapterFragment(locations)).commit();
-////            navigationView.setCheckedItem(R.id.nav_home);
-//
-//        }
-//        new Thread(() -> {
-//            TextView tempFeelsLikeTextView = null;
-//            TextView minTempTextView = null;
-//            TextView maxTempTextView = null;
-//            TextView weatherDescriptionTextView = null;
-//
-//            Weather weather = weatherService.getWeatherByLocation(locationText);
-//
-//            new Handler(Looper.getMainLooper()).post(() -> {
-//
-//                tempFeelsLikeTextView.findViewById(R.id.weatherDescriptionTextView);
-//                minTempTextView.findViewById(R.id.tempTextView);
-//                maxTempTextView.findViewById(R.id.minTempTextView);
-//               weatherDescriptionTextView.findViewById(R.id.maxTempTextView);
-//
-//                holder.getTempFeelsLikeTextView().setText(weather.getTempFeelsLike() + " ");
-//                holder.getMaxTempTextView().setText(weather.getMaxTemp() + " ");
-//                holder.getMinTempTextView().setText(weather.getMinTemp() + " ");
-//                holder.getWeatherDescriptionTextView().setText(weather.getWeatherDescription());
-//            });
-//        }).start();
+
         new Thread(() -> {
 
 
@@ -200,7 +174,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         }).start();
     }
 
-    private void showBottomDialog() {
+    private void showBottomDialog(Weather weather) {
 
         final Dialog dialog = new Dialog(fab.getContext());
 
@@ -214,6 +188,19 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
+        TextView weatherDescriptionTextView =
+                dialog.findViewById(R.id.weatherDescriptionTextView);
+        TextView tempFeelsLikeTextView =
+                dialog.findViewById(R.id.tempFeelsLikeTextView);
+        TextView minTempTextView =
+                dialog.findViewById(R.id.minTempTextView);
+        TextView maxTempTextView =
+                dialog.findViewById(R.id.maxTempTextView);
+
+        tempFeelsLikeTextView.setText(weather.getTempFeelsLike() + " ");
+        maxTempTextView.setText(weather.getMaxTemp() + " ");
+        minTempTextView.setText(weather.getMinTemp() + " ");
+        weatherDescriptionTextView.setText(weather.getWeatherDescription());
 
     }
 
