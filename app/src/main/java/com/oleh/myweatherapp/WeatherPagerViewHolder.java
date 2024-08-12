@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
 
@@ -21,6 +22,7 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
     private final TextView minTempTextView;
     private final TextView maxTempTextView;
     private final TextView weatherDescriptionTextView;
+    private final FloatingActionButton fab;
 
 
     public WeatherPagerViewHolder(@NonNull View itemView) {
@@ -35,6 +37,7 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
         minTempTextView = itemView.findViewById(R.id.tempFeelsLikeTextView);
         maxTempTextView = itemView.findViewById(R.id.minTempTextView);
         weatherDescriptionTextView = itemView.findViewById(R.id.maxTempTextView);
+        fab = itemView.findViewById(R.id.fab);
     }
 
 
@@ -69,5 +72,9 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getWeatherDescriptionTextView() {
         return weatherDescriptionTextView;
+    }
+
+    public  FloatingActionButton getFab() {
+        return fab;
     }
 }

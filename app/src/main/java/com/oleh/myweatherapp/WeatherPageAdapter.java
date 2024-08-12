@@ -2,6 +2,7 @@
 package com.oleh.myweatherapp;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
@@ -54,8 +55,8 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                 .inflate(R.layout.page_weather, parent, false);
 
         WeatherPagerViewHolder holder = new WeatherPagerViewHolder(itemView);
+        FloatingActionButton fab = new WeatherPagerViewHolder(itemView).getFab();
 
-        fab = itemView.findViewById(R.id.fab);
 
         return holder;
 
@@ -74,6 +75,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         PexelImageService pexelImageService = new PexelImageImpl(networkService);
 
         new Thread(() -> {
+
             Animation fadeInCityName = AnimationUtils.loadAnimation(holder.getCityTextView().getContext(), R.anim.fade_in);
             holder.getCityTextView().startAnimation(fadeInCityName);
             Weather weather = weatherService.getWeatherByLocation(locationText);
@@ -153,12 +155,13 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                     default:
                         holder.getWeatherIcon().setAnimation(R.raw.error);
                 }
+                fab = holder.getFab();
+                fab.setOnClickListener(view -> showBottomDialog(weather));
                 holder.getWeatherIcon().startAnimation(animation);
 
 
-            });
-            fab.setOnClickListener(view -> showBottomDialog(weather));
 
+            });
 
 
         }).start();
@@ -175,6 +178,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
     }
 
     private void showBottomDialog(Weather weather) {
+
 
         final Dialog dialog = new Dialog(fab.getContext());
 
