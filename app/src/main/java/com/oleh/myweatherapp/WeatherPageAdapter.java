@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -86,10 +87,12 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
                 holder.getTempTextView().startAnimation(fadeIn);
                 holder.getTempTextView().setText(weather.getTemp() + " \u2103");
 
-                holder.getTempFeelsLikeTextView().setText(weather.getTempFeelsLike() + " ");
-                holder.getMaxTempTextView().setText(weather.getMaxTemp() + " ");
-                holder.getMinTempTextView().setText(weather.getMinTemp() + " ");
-                holder.getWeatherDescriptionTextView().setText(weather.getWeatherDescription());
+                Log.d("helder", weather.toString());
+
+//                holder.getTempFeelsLikeTextView().setText(weather.getTempFeelsLike() + " ");
+//                holder.getMaxTempTextView().setText(weather.getMaxTemp() + " ");
+//                holder.getMinTempTextView().setText(weather.getMinTemp() + " ");
+//                holder.getWeatherDescriptionTextView().setText(weather.getWeatherDescription());
                 switch (weather.getIconCode()) {
                     case RAIN:
                         holder.getWeatherIcon().setAnimation(R.raw.rain);
@@ -157,7 +160,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
 
 
             });
-            fab.setOnClickListener(view -> showBottomDialog());
+            fab.setOnClickListener(view -> showBottomDialog(weather));
 
           new  WeatherPageAdapterFragment(locations);
 
@@ -200,7 +203,7 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         }).start();
     }
 
-    private void showBottomDialog() {
+    private void showBottomDialog(Weather weather) {
 
         final Dialog dialog = new Dialog(fab.getContext());
 
@@ -214,6 +217,19 @@ public class WeatherPageAdapter extends RecyclerView.Adapter<WeatherPagerViewHol
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
+        TextView weatherDescriptionTextView =
+                dialog.findViewById(R.id.weatherDescriptionTextView);
+        TextView tempFeelsLikeTextView =
+                dialog.findViewById(R.id.tempFeelsLikeTextView);
+        TextView minTempTextView =
+                dialog.findViewById(R.id.minTempTextView);
+        TextView maxTempTextView =
+                dialog.findViewById(R.id.maxTempTextView);
+
+        tempFeelsLikeTextView.setText(weather.getTempFeelsLike() + " ");
+        maxTempTextView.setText(weather.getMaxTemp() + " ");
+        minTempTextView.setText(weather.getMinTemp() + " ");
+        weatherDescriptionTextView.setText(weather.getWeatherDescription());
 
     }
 

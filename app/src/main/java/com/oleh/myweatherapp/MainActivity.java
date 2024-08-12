@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
-
 import android.os.Bundle;
+import android.util.Log;
 
 
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +14,14 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.oleh.myweatherapp.network.NetworkService;
+import com.oleh.myweatherapp.network.OkHttpService;
+import com.oleh.myweatherapp.storage.Location;
+import com.oleh.myweatherapp.storage.LocationDAO;
+import com.oleh.myweatherapp.storage.LocationStorage;
 import com.oleh.myweatherapp.weather.Weather;
+import com.oleh.myweatherapp.weather.WeatherService;
+import com.oleh.myweatherapp.weather.WeatherServiceImpl;
 
 public class MainActivity extends AppCompatActivity {
     private Weather weather;
@@ -26,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
