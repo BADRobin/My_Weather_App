@@ -1,6 +1,7 @@
 package com.oleh.myweatherapp;
 
 
+
 import android.os.Bundle;
 
 
@@ -16,10 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.oleh.myweatherapp.weather.Weather;
 
 
 public class WeatherDetailActivity extends AppCompatActivity {
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +31,8 @@ public class WeatherDetailActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-
-
+            fab = findViewById(R.id.fab);
+//            fab.setOnClickListener(view -> showBottomDialog());
             return insets;
         });
 
@@ -38,6 +41,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
         LottieAnimationView weatherIcon = findViewById(R.id.weatherIcon);
 
         TextView textView = findViewById(R.id.textView);
+
 
 
         textView.setText("Temperature: " + weather.getTemp() + " °C");
@@ -110,6 +114,21 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
 
     }
+
+//    private void showBottomDialog() {
+//        final Dialog dialog = new Dialog(fab.getContext());
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.bottomsheetlayout);
+//
+//
+//        dialog.show();
+//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+//        dialog.getWindow().setGravity(Gravity.BOTTOM);
+//
+//
+//    }
 
 
 }

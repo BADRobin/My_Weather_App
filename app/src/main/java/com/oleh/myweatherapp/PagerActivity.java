@@ -1,7 +1,4 @@
-package com.oleh.myweatherapp;//        Animation animation = AnimationUtils.loadAnimation(parent.getContext(), R.anim.move_weather_icon);
-//
-//                holder.getWeatherIcon().startAnimation(animation);
-
+package com.oleh.myweatherapp;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -33,12 +30,19 @@ public class PagerActivity extends AppCompatActivity {
         List<Location> locationList = locationDAO.getAllLocations();
 
         WeatherPageAdapter adapter = new WeatherPageAdapter(locationList);
+//        WeatherPageAdapterFragment second = new WeatherPageAdapterFragment(locationList);
 
         ViewPager2 weatherPager = findViewById(R.id.weatherPager);
         weatherPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
 
         weatherPager.setAdapter(adapter);
+//        weatherPager.setAdapter(second);
+//        if (savedInstanceState == null) {
 
+//            getSupportFragmentManager().beginTransaction().replace(R.id.weatherPager, new WeatherPageAdapterFragment(locationList)).commit();
+//            navigationView.setCheckedItem(R.id.nav_home);
+
+//        }
     }
 }

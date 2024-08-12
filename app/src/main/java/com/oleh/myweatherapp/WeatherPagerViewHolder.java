@@ -17,6 +17,11 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView cityTextView;
     private final TextView tempTextView;
+    private final TextView tempFeelsLikeTextView;
+    private final TextView minTempTextView;
+    private final TextView maxTempTextView;
+    private final TextView weatherDescriptionTextView;
+
 
     public WeatherPagerViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -26,6 +31,10 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
 
         cityTextView = itemView.findViewById(R.id.cityTextView);
         tempTextView = itemView.findViewById(R.id.tempTextView);
+        tempFeelsLikeTextView = itemView.findViewById(R.id.weatherDescriptionTextView);
+        minTempTextView = itemView.findViewById(R.id.tempFeelsLikeTextView);
+        maxTempTextView = itemView.findViewById(R.id.minTempTextView);
+        weatherDescriptionTextView = itemView.findViewById(R.id.maxTempTextView);
     }
 
 
@@ -46,5 +55,19 @@ public class WeatherPagerViewHolder extends RecyclerView.ViewHolder {
         return tempTextView;
     }
 
+    public TextView getTempFeelsLikeTextView() {
+        return tempFeelsLikeTextView;
+    }
 
+    public TextView getMinTempTextView() {
+        return minTempTextView;
+    }
+
+    public TextView getMaxTempTextView() {
+        return maxTempTextView;
+    }
+
+    public TextView getWeatherDescriptionTextView() {
+        return weatherDescriptionTextView;
+    }
 }

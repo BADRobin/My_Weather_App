@@ -34,9 +34,9 @@ public class WeatherServiceImpl implements WeatherService {
                     rootNode.get("weather").get(0).get("description").asText(),
                     rootNode.get("weather").get(0).get("icon").asText(),
                     rootNode.get("main").get("temp").asInt(),
-                    rootNode.get("main").get("feels_like").asDouble(),
-                    rootNode.get("main").get("temp_min").asDouble(),
-                    rootNode.get("main").get("temp_max").asDouble(),
+                    rootNode.get("main").get("feels_like").asInt(),
+                    rootNode.get("main").get("temp_min").asInt(),
+                    rootNode.get("main").get("temp_max").asInt(),
                     rootNode.get("name").asText()
             );
 

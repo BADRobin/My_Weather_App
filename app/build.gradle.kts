@@ -57,7 +57,10 @@ dependencies {
     // https://mvnrepository.com/artifact/com.squareup.picasso/picasso
     implementation("com.squareup.picasso:picasso:2.8")
 
-    implementation ("com.airbnb.android:lottie:3.4.0")
+    implementation("com.airbnb.android:lottie:3.4.0")
+
+    implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0")
+
 
 
 }
